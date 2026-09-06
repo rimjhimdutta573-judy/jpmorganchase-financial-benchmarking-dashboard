@@ -1,26 +1,42 @@
 # JPMorganChase Financial Benchmarking Dashboard
 
-An Excel dashboard that organizes selected JPMorganChase & Co. 2Q26 public financial metrics, reconciles them to a structured raw-data sheet, and presents a focused quarter-on-quarter revenue view.
+An Excel analysis of selected JPMorganChase & Co. financial and risk metrics from public filings. The workbook holds five quarterly observations, from 2Q25 through 2Q26, for 37 metrics and uses a formula-linked 1Q26-to-2Q26 revenue dashboard for the quarter-on-quarter comparison.
 
-## Open the model
+## What this project demonstrates
 
-Open [JPMorganChase_Financial_Benchmarking_Dashboard.xlsx](workbook/JPMorganChase_Financial_Benchmarking_Dashboard.xlsx) in desktop Excel. Start with the `Dashboard` tab, then use `QoQ_Summary` to trace each displayed value back to `Raw_Data`.
+- Financial-statement extraction from a public earnings supplement, with reported/managed-basis labels, units and source pages retained alongside each metric.
+- Quarter-on-quarter variance analysis using formulas, PivotTables and charts.
+- A traceable control design: every displayed summary line maps back to a stable `Metric_ID` in the raw-data table.
+- Judgment around non-comparable percentage changes. A move across zero is shown as **N/M** (not meaningful), rather than ranked as a misleading growth rate.
 
-## What was improved
+## Review the workbook in one minute
 
-- Rebuilt the 37-line summary so each value is formula-linked to the correct raw-data metric.
-- Added a row-level reconciliation control; all 37 rows pass.
-- Made the dashboard revenue-only, so its comparisons are economically consistent.
-- Treated the move from positive to negative investment-securities gains/(losses) as **N/M** (not meaningful), rather than presenting a misleading percentage rank.
-- Removed local-path and user metadata from the distributable workbook.
+Open [JPMorganChase_Financial_Benchmarking_Dashboard.xlsx](workbook/JPMorganChase_Financial_Benchmarking_Dashboard.xlsx) in desktop Excel, then follow this path:
 
-## Scope and caveats
+1. **`Dashboard`** - review the revenue-only QoQ comparison and charts.
+2. **`QoQ_Summary`** - see the 37 metric lines, their 1Q26 and 2Q26 values, and the row-level reconciliation control.
+3. **`Raw_Data`** - inspect the five-quarter history, units, reporting basis and source-page references.
+4. **`Source_Notes`** - see the source-document and scope notes.
 
-This is an educational portfolio analysis, not investment research or a recommendation. Amounts, basis and source-page references are retained in `Raw_Data`. The underlying source report is not redistributed; use the official link below.
+## Scope and interpretation
 
-## Source
+The dashboard intentionally ranks only revenue-category metrics. Balance-sheet, headcount and risk measures remain available in the underlying analysis but are not mixed into a single ranking because their percentage movements are not economically comparable. The workbook is an educational portfolio project, not investment research or a recommendation.
+
+`Other income` rose sharply in 2Q26, partly because JPMorganChase disclosed one-off Visa-related and equity-investment gains in the earnings supplement. That result should therefore be interpreted as an event-driven variance, not a recurring revenue trend.
+
+## Data lineage and checks
+
+| Control | Result |
+| --- | --- |
+| Raw-data metrics | 37, each with a stable ID, unit, basis and report-page reference |
+| Quarterly history | 2Q25 to 2Q26 |
+| Summary-to-raw reconciliation | 37 / 37 PASS |
+| External workbook links | None |
+| VBA/macros | None |
+
+## Primary sources
 
 - [JPMorganChase 2Q26 Earnings Supplement (official PDF)](https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/quarterly-earnings/2026/2nd-quarter/c9c097af-34e9-4aae-92d2-909a2ab7c083.pdf), released July 14, 2026.
 - [SEC Exhibit 99.2 filing](https://www.sec.gov/Archives/edgar/data/19617/000162828026048078/a2q26erfex992supplement.htm), an independently accessible filing copy.
 
-See [methodology and checks](documentation/METHODOLOGY.md) and the [data dictionary](documentation/DATA_DICTIONARY.md) for audit detail.
+See the [methodology and checks](documentation/METHODOLOGY.md) and [data dictionary](documentation/DATA_DICTIONARY.md) for formulas, controls and field definitions.
