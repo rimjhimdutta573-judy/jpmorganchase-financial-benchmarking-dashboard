@@ -1,0 +1,7 @@
+# Excel temporary and lock files
+~$*.xlsx
+*.tmp
+
+# Local exports
+*.pdf
+*.png
