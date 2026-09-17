@@ -1,0 +1,143 @@
+-- Create these measures in Power BI after the three-table model is related.
+-- Never use [Metric Value] without a single metric selected.
+
+Revenue Current Value =
+MAX(vw_revenue_latest_qoq[metric_value])
+
+Revenue Previous Value =
+MAX(vw_revenue_latest_qoq[previous_value])
+
+Revenue Absolute Change =
+MAX(vw_revenue_latest_qoq[absolute_change])
+
+Revenue Comparable QoQ % =
+MAX(vw_revenue_latest_qoq[qoq_change_pct])
+
+Metric Value =
+IF(
+    HASONEVALUE(dim_metric[metric_id]),
+    SUM(fact_metric_value[metric_value]),
+    BLANK()
+)
+
+Metric Plot Value =
+VAR RawValue = [Metric Value]
+RETURN
+    IF(
+        ISBLANK(RawValue),
+        BLANK(),
+        IF([Selected Unit] = "%", RawValue * 100, RawValue)
+    )
+
+Latest Period Sort =
+MAXX(ALL(dim_period), dim_period[period_sort])
+
+Latest Value =
+VAR LatestSort = [Latest Period Sort]
+RETURN
+    CALCULATE(
+        [Metric Value],
+        FILTER(ALL(dim_period), dim_period[period_sort] = LatestSort)
+    )
+
+Previous Value =
+VAR PreviousSort = [Latest Period Sort] - 1
+RETURN
+    CALCULATE(
+        [Metric Value],
+        FILTER(ALL(dim_period), dim_period[period_sort] = PreviousSort)
+    )
+
+Absolute Change =
+VAR CurrentValue = [Latest Value]
+VAR PriorValue = [Previous Value]
+RETURN
+    IF(ISBLANK(CurrentValue) || ISBLANK(PriorValue), BLANK(), CurrentValue - PriorValue)
+
+Latest Value Display =
+VAR RawValue = [Latest Value]
+VAR UnitLabel = [Selected Unit]
+RETURN
+    IF(
+        ISBLANK(RawValue),
+        BLANK(),
+        SWITCH(
+            UnitLabel,
+            "%", FORMAT(RawValue, "0.0%"),
+            "$mm", FORMAT(RawValue, "#,##0.0") & " $mm",
+            "$bn", FORMAT(RawValue, "#,##0.0") & " $bn",
+            "#", FORMAT(RawValue, "#,##0"),
+            FORMAT(RawValue, "#,##0.0")
+        )
+    )
+
+Previous Value Display =
+VAR RawValue = [Previous Value]
+VAR UnitLabel = [Selected Unit]
+RETURN
+    IF(
+        ISBLANK(RawValue),
+        BLANK(),
+        SWITCH(
+            UnitLabel,
+            "%", FORMAT(RawValue, "0.0%"),
+            "$mm", FORMAT(RawValue, "#,##0.0") & " $mm",
+            "$bn", FORMAT(RawValue, "#,##0.0") & " $bn",
+            "#", FORMAT(RawValue, "#,##0"),
+            FORMAT(RawValue, "#,##0.0")
+        )
+    )
+
+Absolute Change Display =
+VAR RawValue = [Absolute Change]
+VAR UnitLabel = [Selected Unit]
+RETURN
+    IF(
+        ISBLANK(RawValue),
+        BLANK(),
+        SWITCH(
+            UnitLabel,
+            "%", FORMAT(RawValue, "0.0%"),
+            "$mm", FORMAT(RawValue, "+#,##0.0;-#,##0.0;0.0") & " $mm",
+            "$bn", FORMAT(RawValue, "+#,##0.0;-#,##0.0;0.0") & " $bn",
+            "#", FORMAT(RawValue, "+#,##0;-#,##0;0"),
+            FORMAT(RawValue, "+#,##0.0;-#,##0.0;0.0")
+        )
+    )
+
+Comparable QoQ Change % =
+VAR CurrentValue = [Latest Value]
+VAR PriorValue = [Previous Value]
+RETURN
+    IF(
+        ISBLANK(CurrentValue)
+            || ISBLANK(PriorValue)
+            || PriorValue = 0
+            || SIGN(CurrentValue) <> SIGN(PriorValue),
+        BLANK(),
+        DIVIDE(CurrentValue - PriorValue, ABS(PriorValue))
+    )
+
+QoQ Display =
+VAR CurrentValue = [Latest Value]
+VAR PriorValue = [Previous Value]
+RETURN
+    IF(
+        ISBLANK(CurrentValue) || ISBLANK(PriorValue),
+        "No prior period",
+        IF(
+            PriorValue = 0 || SIGN(CurrentValue) <> SIGN(PriorValue),
+            "N/M",
+            FORMAT([Comparable QoQ Change %], "0.0%")
+        )
+    )
+
+Selected Unit =
+SELECTEDVALUE(dim_metric[unit], "Select one metric")
+
+Selected Basis =
+SELECTEDVALUE(dim_metric[basis], "Select one metric")
+
+Selected Source Page =
+VAR PageNumber = SELECTEDVALUE(dim_metric[source_page])
+RETURN IF(ISBLANK(PageNumber), "Select one metric", "Page " & FORMAT(PageNumber, "0"))

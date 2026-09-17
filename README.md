@@ -40,3 +40,20 @@ The dashboard intentionally ranks only revenue-category metrics. Balance-sheet, 
 - [SEC Exhibit 99.2 filing](https://www.sec.gov/Archives/edgar/data/19617/000162828026048078/a2q26erfex992supplement.htm), an independently accessible filing copy.
 
 See the [methodology and checks](documentation/METHODOLOGY.md) and [data dictionary](documentation/DATA_DICTIONARY.md) for formulas, controls and field definitions.
+
+## SQL and Power BI extension
+
+The portfolio extension preserves the source workbook and adds a reproducible SQL-style model with a two-page Power BI report:
+
+- **Revenue Variance** compares the latest quarter with the prior quarter using the `vw_revenue_latest_qoq` view.
+- **Financial and Risk Trends** provides a five-quarter, single-metric explorer with current value, prior value, absolute change, QoQ change, unit, basis, and source-page context.
+
+Open the [Power BI build guide](powerbi/POWER_BI_BUILD_GUIDE.md) for refresh and rebuild steps, or review the [SQL/Power BI extension note](documentation/SQL_POWER_BI_EXTENSION.md) for lineage and validation details.
+
+### Power BI evidence
+
+- [Two-page report preview](powerbi/JPMC_Financial_Benchmarking_SQL_PowerBI_Preview.pdf)
+- [Revenue variance page](powerbi/screenshots/revenue_variance.png)
+- [Five-quarter metric explorer](powerbi/screenshots/metric_explorer.png)
+- [Power BI data model](powerbi/screenshots/data_model.png)
+- [Final validation report](documentation/VALIDATION_REPORT.md)

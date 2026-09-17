@@ -1,0 +1,7 @@
+{
+  "name": "Finance Portfolio",
+  "dataColors": ["#17365D", "#2F75B5", "#70AD47", "#FFC000", "#A5A5A5", "#C00000"],
+  "background": "#FFFFFF",
+  "foreground": "#1F1F1F",
+  "tableAccent": "#17365D"
+}

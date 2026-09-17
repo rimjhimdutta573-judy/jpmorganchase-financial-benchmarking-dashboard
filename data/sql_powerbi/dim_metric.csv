@@ -1,0 +1,38 @@
+﻿metric_id,category,metric_name,unit,basis,source_page
+M001,Profitability,Total Net Revenue,$mm,Reported,2
+M002,Profitability,Total Noninterest Expense,$mm,Reported,2
+M003,Profitability,Pre Provision Profit,$mm,Reported,2
+M004,Credit,Provision for Credit Losses,$mm,Reported,2
+M005,Profitability,Net Income,$mm,Reported,2
+M006,Segment,Segment Net Revenue,$mm,Managed,8
+M007,Segment,Segment Noninterest Expense,$mm,Managed,8
+M008,Segment,Segment Pre-Provision Profit,$mm,Managed,8
+M009,Segment,Segment Provision for Credit Losses,$mm,Managed,8
+M010,Segment,Segment for net income,$mm,Managed,8
+M011,Balance sheet,Total Assets,$mm,Reported,3
+M012,Balance sheet,Total Loans,$mm,Reported,3
+M013,Balance sheet,Total Deposits,$mm,Reported,3
+M014,Balance sheet,Common Stockholders' Equity,$mm,Reported,3
+M015,Balance sheet,Long-Term Debt,$mm,Reported,3
+M016,Balance sheet,Loans-to-Deposits Ratio,%,Reported,3
+M017,Employees,Employees,#,Reported,3
+M018,Risk,Average VaR,$mm,Reported,3
+M019,Risk,Earnings-at-Risk +100 bps shift in rates,$bn,Reported,3
+M020,Risk,Earnings-at-Risk -100 bps shift in rates,$bn,Reported,3
+M021,Revenue,Investment banking fees,$mm,Reported,4
+M022,Revenue,Principal transactions,$mm,Reported,4
+M023,Revenue,Lending- and deposit-related fees,$mm,Reported,4
+M024,Revenue,Asset management fees,$mm,Reported,4
+M025,Revenue,Commissions and other fees,$mm,Reported,4
+M026,Revenue,Investment securities gains/(losses),$mm,Reported,4
+M027,Revenue,Mortgage fees and related income,$mm,Reported,4
+M028,Revenue,Card income,$mm,Reported,4
+M029,Revenue,Other income,$mm,Reported,4
+M030,Revenue,Total net revenue,$mm,Reported,4
+M031,Expense,Compensation expense,$mm,Reported,4
+M032,Expense,Occupancy expense,$mm,Reported,4
+M033,Expense,"Technology, communications and equipment expense",$mm,Reported,4
+M034,Expense,Professional and outside services,$mm,Reported,4
+M035,Expense,Marketing,$mm,Reported,4
+M036,Expense,Other expense,$mm,Reported,4
+M037,Expense,Total noninterest expense,$mm,Reported,4

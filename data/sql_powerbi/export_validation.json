@@ -1,0 +1,10 @@
+{
+  "source_workbook": "workbook/JPMorganChase_Financial_Benchmarking_Dashboard.xlsx",
+  "source_sheet": "Raw_Data",
+  "metric_count": 37,
+  "quarter_count": 5,
+  "fact_count": 185,
+  "unique_metric_ids": 37,
+  "null_fact_values": 0,
+  "expected_latest_quarter": "2Q26"
+}
