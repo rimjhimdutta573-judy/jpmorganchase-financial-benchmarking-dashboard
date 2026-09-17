@@ -50,6 +50,8 @@ The portfolio extension preserves the source workbook and adds a reproducible SQ
 
 Open the [Power BI build guide](powerbi/POWER_BI_BUILD_GUIDE.md) for refresh and rebuild steps, or review the [SQL/Power BI extension note](documentation/SQL_POWER_BI_EXTENSION.md) for lineage and validation details.
 
+For a command-line MySQL rebuild, use the [Phase 3 MySQL guide](documentation/MYSQL_COMMAND_LINE_PHASE3.md) with the [runner template](sql/00_phase3_runner.template.sql). The template contains placeholders only; credentials are entered privately in the MySQL client and are never stored in the project.
+
 ### Power BI evidence
 
 - [Two-page report preview](powerbi/JPMC_Financial_Benchmarking_SQL_PowerBI_Preview.pdf)
